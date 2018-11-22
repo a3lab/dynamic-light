@@ -11,7 +11,7 @@ from rl.policy import BoltzmannQPolicy
 from OscEnv import OscEnv
 
 def reward(observation):
-    return observation[0]
+    return (observation[1] + observation[2]) / 2
 
 
 # Get the environment and extract the number of actions.
