@@ -15,7 +15,7 @@ def reward(observation):
 
 
 # Get the environment and extract the number of actions.
-env = OscEnv(Discrete(3), Box(low=0, high=1, shape=(4,)), reward)
+env = OscEnv(Discrete(3), Box(low=0, high=1, shape=(3,)), reward)
 np.random.seed(123)
 env.seed(123)
 nb_actions = env.action_space.n
