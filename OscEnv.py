@@ -8,10 +8,13 @@ from pythonosc import osc_message_builder
 from pythonosc import udp_client
 
 def _receive_observation(unused_addr, args, *values):
-    env = args[0] # the enviroment object
+    # The OscEnv object.
+    env = args[0]
 #    print("Received data {} {} {}".format(unused_addr, args, values))
     if not env._observation_flag:
+        # Record values.
         env._current_observation = values
+        # Reset flag.
         env._observation_flag = True
 
 class OscEnv(Env):
