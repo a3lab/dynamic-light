@@ -49,6 +49,7 @@ public void action(int a) {
   println("Received action: " + a);
   // Update x.
   x += (a-1) * STEP;
+  println(x);
   while (x < 0) x++;
   while (x > 1) x--;
   
@@ -58,9 +59,14 @@ public void action(int a) {
 
 void sendObservation() {
   OscMessage msg = new OscMessage("/env/observation");
+  
+  float leftLight  = incomingLight(x, cellLeftX);
+  float rightLight = incomingLight(x, cellRightX);
+  float reward = 0.5 * (leftLight + rightLight);
+  msg.add(reward);
   msg.add(x);
-  msg.add(incomingLight(x, cellLeftX));
-  msg.add(incomingLight(x, cellRightX));
+  msg.add(leftLight);
+  msg.add(rightLight);
   oscP5.send(msg, myRemoteLocation);   
 }
 
